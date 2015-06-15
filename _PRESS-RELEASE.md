@@ -1,5 +1,5 @@
 # Project Name #
-
+Speed Reeader
 <!-- 
 > This material was originally posted [here](http://www.quora.com/What-is-Amazons-approach-to-product-development-and-product-management). It is reproduced here for posterities sake.
 
@@ -18,27 +18,39 @@ Once the project moves into development, the press release can be used as a touc
  
 ## Heading ##
   > Name the product in a way the reader (i.e. your target customers) will understand.
+    Speed Reader
 
 ## Sub-Heading ##
   > Describe who the market for the product is and what benefit they get. One sentence only underneath the title.
+    Learn Speed Reading
 
 ## Summary ##
   > Give a summary of the product and the benefit. Assume the reader will not read anything else so make this paragraph good.
+    Speed Reader will train you to become a proficient at reading quickly in a short amount of time.
 
 ## Problem ##
   > Describe the problem your product solves.
+    Speed Reader aims to solve productivity problems associated with slow reading rate.
 
 ## Solution ##
   > Describe how your product elegantly solves the problem.
+    Speed Reader presents a variety of excercises that help the user improve in reading speed.
 
 ## Quote from You ##
   > A quote from a spokesperson in your company.
+    Speed Reader has improved my reading speed, saved me lots of time, and made me a lot smarter!
 
 ## How to Get Started ##
   > Describe how easy it is to get started.
+    All you need to do is launch the app, select your training preferences, and press start.
 
 ## Customer Quote ##
   > Provide a quote from a hypothetical customer that describes how they experienced the benefit.
+    Speed Reader is a great app because it has many features that other speed-reading apps don't have. The training preferences
+    for every excercise not only allows the reader to learn at a manageable pace, but also customize their excercise to be unique 
+    to other users of the app. A downside for this feature would be that the available preferences give too much comfort to the 
+    user and will slow down the learning process.
 
 ## Closing and Call to Action ##
   > Wrap it up and give pointers where the reader should go next.
+    Get started on Speed Reader today for free. Use our given reading material or add your own!

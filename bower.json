@@ -1,0 +1,10 @@
+{
+  "name": "ngApp1",
+  "version": "0.0.0",
+  "authors": [],
+  "dependencies": {
+    "angular": "~1.2.18",
+    "angular-route": "~1.2.18",
+    "angular-mocks": "~1.2.18"
+  }
+}
