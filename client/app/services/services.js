@@ -11,4 +11,15 @@ angular.module('app.services', [])
     getItems: getItems
   };
   
+})
+.factory('Fetch', function($http){
+  var text = [];
+
+  var getText = function(){
+
+  };
+
+  return {
+    getText: getText
+  };
 });

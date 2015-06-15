@@ -1,5 +1,5 @@
 
-angular.module('app', ['ngRoute'])
+angular.module('app', ['ngRoute', 'app.reader', 'app.auth', 'app.services'])
 
 .config(function($routeProvider){
   $routeProvider
@@ -11,10 +11,14 @@ angular.module('app', ['ngRoute'])
       templateUrl: 'client/app/auth/signup.html',
       controller: 'authController'
     })
-    .otherwise({
-      templateUrl: 'client/app/auth/signin.html',
-      redirectTo: '/'
-    });
+    .when('/reader', {
+      templateUrl: 'client/app/reader/reader.html',
+      controller: 'readerController'
+    })
+    // .otherwise({
+    //   templateUrl: 'client/app/auth/signin.html',
+    //   redirectTo: '/'
+    // });
 
 })
 
