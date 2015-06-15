@@ -1,0 +1,30 @@
+.header {
+  background-color: black;
+}
+
+.readerContainer {
+  margin-top: 15%;
+  margin-left: 25%;
+}
+
+.dashboardItem {
+  height: 100px;
+  width: 100px;
+  border: 1px solid lightgray;
+  display: inline-block;
+}
+
+.dashboardItem h3 {
+  text-align: center;
+}
+
+.reader {
+  height: 30px;
+  width: 400px;
+  border: 1px solid lightgray;
+}
+
+.textBody {
+  width: 400px;
+}
+

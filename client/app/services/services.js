@@ -12,14 +12,68 @@ angular.module('app.services', [])
   };
   
 })
+
+
+// fetch text
 .factory('Fetch', function($http){
-  var text = [];
+
+  var fetch = function(){
+    return $http.get('https://en.wikipedia.org/wiki/Mongoose')
+    .success(function(data, status, headers, config){
+      console.log('success')
+    })
+    .error(function(data, status, headers, config){
+      console.log('error')
+    });
+  }
+
+  var text = 'Mongoose is the popular English name for 29 of 34[2] species in the 14 genera of the family \
+    Herpestidae, which are small carnivorans that are native to southern Eurasia and mainland Africa. The \
+    other five species in the family are the four kusimanses in the genus Crossarchus, and the only species \
+    in the genus Suricata: Suricata suricatta, commonly called meerkat in English.\
+    \
+    Six species in family Eupleridae, endemic to the island of Madagascar, are also called "mongoose" and \
+    were originally classified as a genus within the Herpestidae family, but genetic evidence has since shown \
+    that they are more closely related to other Madagascar carnivorans in the family Eupleridae; they have, since \
+    2006, been classified in the subfamily Galidiinae within Eupleridae.\
+    \
+    Herpestidae belong to the suborder Feliformia, together with the cat, hyena and civet families.';
+
+  
 
   var getText = function(){
-
+    return text;
   };
 
   return {
+    fetch: fetch,
     getText: getText
   };
+})
+
+// process text to certain options
+.factory('Process', function(){
+
+  var process = function(text, length, template){
+    var len = text.length;
+    var newText = [];
+    var start = 0;
+    var i = 0;
+    
+    while(i < len) {
+      newText.push(text.slice(start, i));
+      start = i;
+      i += length;
+    }
+
+    newText.push(text.slice(start, i));
+
+    return newText
+  };
+
+  return {
+    process: process
+  };
 });
+
+

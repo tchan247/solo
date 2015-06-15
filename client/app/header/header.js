@@ -2,7 +2,7 @@ angular.module('app.header', [])
 // .controller('headerController', function($scope){
 //   $scope;
 // })
-.directive('headerView', function(){
+.directive('header', function(){
   return {
     restrict: 'A',
     // replace: true,
