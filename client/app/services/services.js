@@ -77,17 +77,38 @@ angular.module('app.services', [])
 
   var process = function(text, length, callback){
     var len = text.length;
+    var rawText = [];
     var newText = [];
     var start = 0;
     var i = 0;
+    var parser = new DOMParser();
+    var doc = parser.parseFromString(text, 'text/html').childNodes[1];
+
+    // recursively find p and article tags
+    var find = function(node){
+      var children = node.childNodes;
+
+      if(node.tagName === 'P' || node.tagName === 'ARTICLE') {
+        rawText.push(node.innerText);
+      }
+
+      for(var i = 0; i < children.length; i++) {
+        find(children[i]);
+      }
+    };
+
+    find(doc);
     
+    // create an array of strings each with defined length
+    rawText = rawText.join('. ');
+    i = 0;
     while(i < len) {
-      newText.push(text.slice(start, i));
+      newText.push(rawText.slice(start, i));
       start = i;
       i += length;
     }
 
-    newText.push(text.slice(start, i));
+    newText.push(rawText.slice(start, i));
 
     callback(newText);
   };

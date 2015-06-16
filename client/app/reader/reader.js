@@ -51,7 +51,7 @@ angular.module('app.reader', ['app.services'])
 
     Fetch.fetch($rootScope.readerData.url, function(data){
       
-      Process.process(data, 25, displayText);
+      Process.process(data, 40, displayText);
 
     });
   };
