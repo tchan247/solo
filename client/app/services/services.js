@@ -20,10 +20,10 @@ angular.module('app.services', [])
   var fetch = function(){
     return $http.get('https://en.wikipedia.org/wiki/Mongoose')
     .success(function(data, status, headers, config){
-      console.log('success')
+      console.log('success on GET')
     })
     .error(function(data, status, headers, config){
-      console.log('error')
+      console.log('error on GET')
     });
   }
 
@@ -51,6 +51,25 @@ angular.module('app.services', [])
   };
 })
 
+// post data to db
+.factory('Set', function($http){
+
+  var set = function(url) {
+    return $http.post(url, {msg:'hello word!'}).
+      success(function(data, status, headers, config) {
+        console.log('successful POST');
+      }).
+      error(function(data, status, headers, config) {
+        console.log('error on POST');
+      });
+  }
+
+  return {
+    set: set
+  };
+
+})
+
 // process text to certain options
 .factory('Process', function(){
 
@@ -74,6 +93,7 @@ angular.module('app.services', [])
   return {
     process: process
   };
-});
+})
+
 
 

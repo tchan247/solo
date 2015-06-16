@@ -1,17 +1,45 @@
 angular.module('app.reader', ['app.services'])
 .controller('readerController', function($scope, $location, Fetch, Process){
 
-  $scope.text = Fetch.getText();
+  // $scope.text = Fetch.getText();
 
   // $scope.text = Fetch.fetch();
 
-  // $scope.text = Process.process($scope.text, 25)
+  // console.log(Fetch.getText())
 
-  // console.log(Process.process($scope.text, 25))
+  $scope.text = Process.process(Fetch.getText(), 25)
 
   $scope.exit = function(){
     console.log('Exiting')
     $location.path('/home');
+  };
+
+  // console.log()
+
+  $scope.start = function(){
+    setTimeout(function(){console.log('3')}, 1000);
+    setTimeout(function(){console.log('2')}, 2000);
+    setTimeout(function(){console.log('1')}, 3000);
+    setTimeout(function(){displayText()}, 4000);
+
+    var displayText = function(){
+      var readerEl = angular.element(document.querySelector('.reader'));
+      var i = 0;
+      var displayInterval = setInterval(function(){
+        if($scope.text[i + 1] === undefined) {
+          clearInterval(displayInterval);
+
+          readerEl.children()[0].remove()
+        }
+
+        readerEl.append('<p>' + $scope.text[i] + '</p>');
+        readerEl.children()[0].remove()
+        console.log($scope.text[i]);
+        i++;
+      }, 1000);
+
+      
+    }
   };
 
 });

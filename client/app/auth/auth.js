@@ -1,6 +1,6 @@
 angular.module('app.auth', [])
 
-.controller('authController', function($scope, Auth){
+.controller('authController', function($scope, Auth, Set){
 
   console.log('Auth.getItems()');
 
@@ -8,15 +8,16 @@ angular.module('app.auth', [])
 
   console.log($scope.auth);
 
+  
 
-  $scope.signin = function(){
-
-
+  $scope.signIn = function(){
+    console.log('siginin');
+    Set.set('/signin');
   };
 
-  $scope.signup = function(){
+  $scope.signUp = function(){
 
-
+    console.log('signup');
   };
 
 });
