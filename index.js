@@ -4,7 +4,10 @@ var request = require('request');
 var port = 8080;
 var app = express();
 var server = require('http').createServer(app);
+var mongoose = require('mongoose');
 var db = require('./server/db/db.js');
+var User = require('./server/db/models/user.js');
+var Text = require('./server/db/models/text.js');
 
 app.use(express.static(__dirname));
 
@@ -15,32 +18,39 @@ app.get('/', function(req, res){
   });
 });
 
+app.get('/retrieve', function(req, res){
+  var data = mongoose.model('Text');
+  data.find({}, function(err, data){
+    console.log(data);
+    res.send(data);
+  });
+});
+
 app.get('/*', function(req, res){
   console.log('app.get: ' + typeof req.url.slice(2,req.url.length-1));
-  // {uri: 'https://en.wikipedia.org/wiki/Mongoose'}
   request({uri: req.url.slice(2,req.url.length-1)}, function(err, response, body){
+
     if(err) console.log(err);
 
-    // var text;
-
-    // if(typeof body === 'string') {
-    //   text = [];
-    //   var open = 0;
-
-    //   for(var i = 0, len = body.length; i < len; i++) {
-    //     if(body.slice(i-1, i+2) === '<p>') {
-    //       open = i;
-    //     }
-
-    //     if(body.slice(i-1, i+3) === '</p>') {
-    //       text.push(body.slice(open, i-1));
-    //     }
-    //   }
-    // }
-
-    // console.log(text);
-
     res.send(body);
+  });
+});
+
+app.post('/add', function(req, res){
+  req.on('data', function(data){
+    data = JSON.parse(data);
+
+    var text = new Text({
+      title: data.title,
+      url: data.url
+    });
+
+    text.save(function(err, data){
+      if(err) {
+        console.log(err);
+      } 
+
+    });
   });
 });
 

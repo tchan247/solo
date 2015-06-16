@@ -1,5 +1,5 @@
 angular.module('app.texts', [])
-.controller('textsController', function($scope, $location, $rootScope, Fetch){
+.controller('textsController', function($scope, $location, $rootScope, Fetch, Set, Retrieve){
 
   $rootScope.readingList = [];
   $scope.list = $rootScope.readingList;
@@ -16,16 +16,26 @@ angular.module('app.texts', [])
 
   $scope.getInput = function(title, url){
 
-    $rootScope.readingList.push({title: title, url: url});
+    var item = {title: title, url: url};
+
+    $rootScope.readingList.push(item);
+
+    Set.set(item);
   };
 
   $scope.read = function(input){
-    // console.log(input);
+
     $rootScope.readerData = input;
-    // Fetch.fetch(input.url, function(){
 
     $location.path('/reader');
-    // });
+  };
+
+  $scope.loadText = function(){
+    Retrieve.retrieve(function(data){
+      for(var i = 0; i < data.length; i++) {
+        $rootScope.readingList.push({title: data[i].title, url: data[i].url});
+      }
+    });
   };
 
 });
