@@ -15,8 +15,10 @@ app.get('/', function(req, res){
   });
 });
 
-app.get('/scrape', function(req, res){
-  request({uri: 'https://en.wikipedia.org/wiki/Mongoose'}, function(err, response, body){
+app.get('/*', function(req, res){
+  console.log('app.get: ' + typeof req.url.slice(2,req.url.length-1));
+  // {uri: 'https://en.wikipedia.org/wiki/Mongoose'}
+  request({uri: req.url.slice(2,req.url.length-1)}, function(err, response, body){
     if(err) console.log(err);
 
     // var text;

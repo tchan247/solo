@@ -5,22 +5,27 @@ angular.module('app.texts', [])
 
   $rootScope.readerData = '';
 
-  $rootScope.getData = function(item){
-    console.log('url ' + item.title);
-    Fetch.fetch('/scrape', function(data){
-      $rootScope.readerData = data;
-    });
-    $location.path('/reader');
-  };
+  // $rootScope.getData = function(item){
+  //   console.log('url ' + item.title);
+  //   Fetch.fetch('/scrape', function(data){
+  //     $rootScope.readerData = data;
+  //   });
+  //   $location.path('/reader');
+  // };
 
   $scope.getInput = function(input){
     console.log(input);
 
-    this.list.push({title: input});
+    this.list.push({url: input});
   };
 
-  $scope.read = function(url){
-    
+  $scope.read = function(input){
+    // console.log(input);
+    $rootScope.readerData = input;
+    // Fetch.fetch(input.url, function(){
+
+    $location.path('/reader');
+    // });
   };
 
 });

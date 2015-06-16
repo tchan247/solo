@@ -18,7 +18,8 @@ angular.module('app.services', [])
 .factory('Fetch', function($http){
 
   var fetch = function(url, callback){
-    return $http.get(url)
+    console.log(url)
+    return $http.get("'" + url + "'")
     .success(function(data, status, headers, config){
       console.log('success on GET');
       callback(data);

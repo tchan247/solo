@@ -47,8 +47,10 @@ angular.module('app.reader', ['app.services'])
       }, 1000);
     };
 
-    Fetch.fetch('/scrape', function(data){
+    // console.log($rootScope.readerData);
 
+    Fetch.fetch($rootScope.readerData.url, function(data){
+      
       Process.process(data, 25, displayText);
 
     });
