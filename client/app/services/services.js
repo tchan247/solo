@@ -17,8 +17,8 @@ angular.module('app.services', [])
 // fetch text
 .factory('Fetch', function($http){
 
-  var fetch = function(){
-    return $http.get('https://en.wikipedia.org/wiki/Mongoose')
+  var fetch = function(url){
+    return $http.get(url)
     .success(function(data, status, headers, config){
       console.log('success on GET')
     })

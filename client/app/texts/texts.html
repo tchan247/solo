@@ -1,8 +1,24 @@
 <div class='texts' ng-controller='textsController'>
-  
-  <input>
+  Add an Article by url:
+  <input ng-model='urlInput' ng-focus='urlInput = "" '> 
+  <button ng-click='getInput(urlInput)'> Add Article </button>
 
   <div class='textsTable'>
-    Available Readings
+    Available Readings:
+    <table border='1px solid lightgrey'>
+      <tr>
+        <th> Title </th>
+        <th> Author </th>
+        <th> Select </th>
+      </tr>
+
+      <tr ng-repeat='reading in list'>
+        <td> {{reading.title}} </td>
+        <td> author unknown </td>
+        <td> <button class='selectReading' ng-click='read(reading)'> Read </button> </td>
+      </tr>
+
+    </table>
+
   </div>
 </div>

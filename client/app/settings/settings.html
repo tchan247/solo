@@ -1,9 +1,15 @@
 <div class='settings' ng-controller='settingsController'>
   <div class='settingsSpeed'>
     Select Default Speed:
+    <input class='speedInput' ng-model='speed'>
+    <button ng-click='decrement()'>-</button>
+    <button ng-click='increment()'>+</button>
     <select>
-      
+      <option value='1'> 1x </option>
+      <option value='2'> 2x </option>
+      <option value='3'> 3x </option>
     </select>
   
   </div>
 </div>
+

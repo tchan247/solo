@@ -14,8 +14,6 @@ angular.module('app.reader', ['app.services'])
     $location.path('/home');
   };
 
-  // console.log()
-
   $scope.start = function(){
     setTimeout(function(){console.log('3')}, 1000);
     setTimeout(function(){console.log('2')}, 2000);
@@ -26,7 +24,7 @@ angular.module('app.reader', ['app.services'])
       var readerEl = angular.element(document.querySelector('.reader'));
       var i = 0;
       var displayInterval = setInterval(function(){
-        if($scope.text[i + 1] === undefined) {
+        if($scope.text[i + 1] === undefined || readerEl.length === 0) {
           clearInterval(displayInterval);
 
           readerEl.children()[0].remove()

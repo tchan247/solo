@@ -1,6 +1,6 @@
 
 angular.module('app', ['ngRoute', 'app.auth', 'app.header', 'app.dashboard', 'app.reader', 'app.texts', 'app.settings', 
-  'app.services', 'app.leaderboard'])
+  'app.services', 'app.stats', 'app.leaderboard'])
 
 .config(function($routeProvider){
   $routeProvider
@@ -21,20 +21,20 @@ angular.module('app', ['ngRoute', 'app.auth', 'app.header', 'app.dashboard', 'ap
       controller: 'dashboardController'
     })
     .when('/settings', {
-      templateUrl: '',
-      controller: ''
+      templateUrl: 'client/app/settings/settings.html',
+      controller: 'settingsController'
     })
     .when('/stats',{
-      templateUrl: '',
-      controller: ''
+      templateUrl: 'client/app/stats/stats.html',
+      controller: 'statsController'
     })
     .when('/leaderboard', {
-      templateUrl: '',
-      controller: ''
+      templateUrl: 'client/app/leaderboard/leaderboard.html',
+      controller: 'leaderboardController'
     })
     .when('/texts', {
-      templateUrl: '',
-      controller: ''
+      templateUrl: 'client/app/texts/texts.html',
+      controller: 'textsController'
     })
     .otherwise({
       templateUrl: 'client/app/dashboard/dashboard.html',
