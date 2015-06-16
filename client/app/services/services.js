@@ -17,15 +17,16 @@ angular.module('app.services', [])
 // fetch text
 .factory('Fetch', function($http){
 
-  var fetch = function(url){
+  var fetch = function(url, callback){
     return $http.get(url)
     .success(function(data, status, headers, config){
-      console.log('success on GET')
+      console.log('success on GET');
+      callback(data);
     })
     .error(function(data, status, headers, config){
-      console.log('error on GET')
+      console.log('error on GET');
     });
-  }
+  };
 
   var text = 'Mongoose is the popular English name for 29 of 34[2] species in the 14 genera of the family \
     Herpestidae, which are small carnivorans that are native to southern Eurasia and mainland Africa. The \
@@ -73,7 +74,7 @@ angular.module('app.services', [])
 // process text to certain options
 .factory('Process', function(){
 
-  var process = function(text, length, template){
+  var process = function(text, length, callback){
     var len = text.length;
     var newText = [];
     var start = 0;
@@ -87,7 +88,7 @@ angular.module('app.services', [])
 
     newText.push(text.slice(start, i));
 
-    return newText
+    callback(newText);
   };
 
   return {

@@ -1,23 +1,23 @@
 angular.module('app.settings', [])
-.controller('settingsController', function($scope){
-  $scope.speed = 1;
+.controller('settingsController', function($scope, $rootScope){
+  $rootScope.speed = 1;
 
   $scope.increment = function(){
-    if(this.speed < 10) {
-      if(this.speed < 1) {
-        this.speed += .1;
+    if($rootScope.speed < 10) {
+      if($rootScope.speed < 1) {
+        $rootScope.speed += .1;
       } else {
-        this.speed++;
+        $rootScope.speed++;
       }
     }
   };
 
   $scope.decrement = function(){
-    if(this.speed > 0) {
-      if(this.speed <= 1) {
-        this.speed -= .1;
+    if($rootScope.speed > 0) {
+      if($rootScope.speed <= 1) {
+        $rootScope.speed -= .1;
       } else {
-        this.speed--;
+        $rootScope.speed--;
       }
     }
   };

@@ -1,7 +1,17 @@
 angular.module('app.texts', [])
-.controller('textsController', function($scope, $location, Fetch){
+.controller('textsController', function($scope, $location, $rootScope, Fetch){
 
-  $scope.list = Fetch.fetch('/readings') || [];
+  $scope.list = [];
+
+  $rootScope.readerData = '';
+
+  $rootScope.getData = function(item){
+    console.log('url ' + item.title);
+    Fetch.fetch('/scrape', function(data){
+      $rootScope.readerData = data;
+    });
+    $location.path('/reader');
+  };
 
   $scope.getInput = function(input){
     console.log(input);
@@ -9,9 +19,8 @@ angular.module('app.texts', [])
     this.list.push({title: input});
   };
 
-  $scope.read = function(item){
-    console.log('read ' + item.title);
-    $location.path('/reader');
+  $scope.read = function(url){
+    
   };
 
 });

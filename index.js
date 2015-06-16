@@ -1,5 +1,6 @@
 var express = require('express');
 var fs = require('fs');
+var request = require('request');
 var port = 8080;
 var app = express();
 var server = require('http').createServer(app);
@@ -14,5 +15,33 @@ app.get('/', function(req, res){
   });
 });
 
+app.get('/scrape', function(req, res){
+  request({uri: 'https://en.wikipedia.org/wiki/Mongoose'}, function(err, response, body){
+    if(err) console.log(err);
+
+    // var text;
+
+    // if(typeof body === 'string') {
+    //   text = [];
+    //   var open = 0;
+
+    //   for(var i = 0, len = body.length; i < len; i++) {
+    //     if(body.slice(i-1, i+2) === '<p>') {
+    //       open = i;
+    //     }
+
+    //     if(body.slice(i-1, i+3) === '</p>') {
+    //       text.push(body.slice(open, i-1));
+    //     }
+    //   }
+    // }
+
+    // console.log(text);
+
+    res.send(body);
+  });
+});
+
 app.listen(port);
+
 
