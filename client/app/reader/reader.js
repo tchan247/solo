@@ -15,7 +15,7 @@ angular.module('app.reader', ['app.services'])
 
   // $scope.text = Process.process(Fetch.getText(), 25);
 
-  // $scope.text = $rootScope.readerData;
+  $scope.readerSpeed = $rootScope.readerSpeed || 1000;
   
   $scope.exit = function(){
     console.log('Exiting');
@@ -28,23 +28,19 @@ angular.module('app.reader', ['app.services'])
     setTimeout(function(){console.log('3');}, 1000);
     setTimeout(function(){console.log('2');}, 2000);
     setTimeout(function(){console.log('1');}, 3000);
-    // setTimeout(function(){displayText()}, 4000);
+
+    var i = 0;
     var displayText = function(data){
       var readerEl = angular.element(document.querySelector('.reader'));
-      var i = 0;
- 
-      var displayInterval = setInterval(function(){
-        if([i + 1] === undefined || readerEl.length === 0) {
-          clearInterval(displayInterval);
 
-          readerEl.children()[0].remove();
-        }
 
-        readerEl.append('<p>' + data[i] + '</p>');
-        readerEl.children()[0].remove();
-        console.log(data[i]);
-        i++;
-      }, 1000);
+      readerEl.append('<p>' + data[i] + '</p>');
+      readerEl.children()[0].remove();
+      console.log(data[i]);
+      i++;
+      if(data[i] !== undefined && data[i].length > 0) {
+        setTimeout(function(){displayText(data)}, $scope.readerSpeed);
+      }
     };
 
     // console.log($rootScope.readerData);
