@@ -1,11 +1,12 @@
 <div class='texts' ng-controller='textsController' ng-init='loadText()'>
+  <button ng-click='returnHome()'> Home </button>
   <p> Add an Article: </p>
   Title: <input ng-model='titleInput' ngRequired='true'>
   URL: <input ng-model='urlInput'> 
   <button ng-click='getInput(titleInput, urlInput)'> Add Article </button>
 
   <div class='textsTable'>
-    <p> Available Readings: </p>
+    <p> Saved Reading Material: </p>
     <table border='1px solid lightgrey'>
       <tr>
         <th> Title </th>
@@ -17,6 +18,7 @@
         <td> {{reading.title}} </td>
         <td> {{reading.url}} </td>
         <td> <button class='selectReading' ng-click='read(reading)'> Read </button> </td>
+        <td> <button ng-click='delete(reading.title)'>x</button> </td>
       </tr>
 
     </table>

@@ -27,3 +27,5 @@ User.comparePassword = function(attemptedPassword, savedPassword, callback){
 };
 
 module.exports = User;
+
+

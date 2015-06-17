@@ -21,7 +21,6 @@ app.get('/', function(req, res){
 app.get('/retrieve', function(req, res){
   var data = mongoose.model('Text');
   data.find({}, function(err, data){
-    console.log(data);
     res.send(data);
   });
 });
@@ -52,6 +51,15 @@ app.post('/add', function(req, res){
 
     });
   });
+});
+
+app.delete('/*', function(req, res){
+  var title = req.url.slice(1).replace(/%20/g, ' ');
+  console.log(title);
+  var data = mongoose.model('Text');
+  data.find({title: title}).remove().exec();
+
+  res.send();
 });
 
 app.listen(port);

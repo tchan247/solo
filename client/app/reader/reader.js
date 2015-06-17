@@ -4,11 +4,16 @@ angular.module('app.reader', ['app.services'])
   $scope.readerSpeed = 1000;
 
   $scope.increment = function(){
-    this.readerSpeed += 100;
+
+    if(this.readerSpeed < 2000) {
+      this.readerSpeed += 100;
+    }
   };
   
   $scope.decrement = function(){
-    this.readerSpeed -= 100;
+    if(this.readerSpeed > 100) {
+      this.readerSpeed -= 100;
+    }
   };
 
   $scope.exit = function(){
@@ -39,9 +44,9 @@ angular.module('app.reader', ['app.services'])
 
     Fetch.fetch($rootScope.readerData.url, function(data){
       
-      Process.process(data, 40, displayText);
+      Process.process(data, 20, displayText);
 
-      
+
 
     });
   };

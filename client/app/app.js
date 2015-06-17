@@ -43,7 +43,7 @@ angular.module('app', ['ngRoute', 'app.auth', 'app.header', 'app.dashboard', 'ap
 
 })
 
-.controller('appController', function(){
+.controller('appController', function($location){
 
 
 });

@@ -1,5 +1,5 @@
 angular.module('app.texts', [])
-.controller('textsController', function($scope, $location, $rootScope, Fetch, Set, Retrieve){
+.controller('textsController', function($scope, $location, $rootScope, $route, Fetch, Store, Retrieve, Remove){
 
   $rootScope.readingList = [];
   $scope.list = $rootScope.readingList;
@@ -20,7 +20,7 @@ angular.module('app.texts', [])
 
     $rootScope.readingList.push(item);
 
-    Set.set(item);
+    Store.store(item);
   };
 
   $scope.read = function(input){
@@ -30,9 +30,23 @@ angular.module('app.texts', [])
     $location.path('/reader');
   };
 
+  $scope.delete = function(title){
+
+    Remove.remove(title, function(){
+      $route.reload();  // current solution to re-render
+    });
+
+  };
+
+  $scope.returnHome = function(){
+    console.log('returning home');
+    $location.path('/home');
+  };
+
   $scope.loadText = function(){
+
     Retrieve.retrieve(function(data){
-      for(var i = 0; i < data.length; i++) {
+      for(var i = 0, len = data.length; i < len; i++) {
         $rootScope.readingList.push({title: data[i].title, url: data[i].url});
       }
     });

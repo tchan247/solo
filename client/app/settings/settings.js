@@ -1,5 +1,5 @@
 angular.module('app.settings', [])
-.controller('settingsController', function($scope, $rootScope){
+.controller('settingsController', function($scope, $rootScope, $location){
   $rootScope.readerSpeed = 10000;
 
   $scope.increment = function(){
@@ -20,6 +20,11 @@ angular.module('app.settings', [])
         $rootScope.readerSpeed -= 100;
       }
     }
+  };
+
+  $scope.returnHome = function(){
+    console.log('returning home');
+    $location.path('/home');
   };
 
 });

@@ -57,32 +57,50 @@ angular.module('app.services', [])
 })
 
 // post data to db
-.factory('Set', function($http){
+.factory('Store', function($http){
 
-  var set = function(data) {
-    return $http.post('/add', data).
-      success(function(data, status, headers, config) {
-        console.log('successful POST');
-      }).
-      error(function(data, status, headers, config) {
-        console.log(status);
+  var store = function(data) {
+    return $http.post('/add', data)
+      .success(function(data, status, headers, config) {
+        console.log('success on POST');
+      })
+      .error(function(data, status, headers, config) {
+        console.log('');
       });
   };
 
   return {
-    set: set
+    store: store
   };
 
 })
 
+.factory('Remove', function($http){
+  
+  var remove = function(title, callback){
+    return $http.delete('/' + title)
+    .success(function(){
+      console.log('success on Remove');
+      callback();
+    })
+    .error(function(){
+      console.log('error on Remove');
+    });
+    
+  };
+
+  return {
+    remove: remove
+  };
+})
+
 // process text to certain options
-.factory('Process', function(Set){
+.factory('Process', function(){
 
   var process = function(text, length, callback){
     var len = text.length;
     var rawText = [];
     var newText = [];
-    var start = 0;
     var i = 0;
     var parser = new DOMParser();
     var doc = parser.parseFromString(text, 'text/html');
@@ -115,12 +133,26 @@ angular.module('app.services', [])
     find(doc);
     
     // create an array of strings each with defined length
-    rawText = rawText.join('');
+    rawText = rawText.join(' ');
+    var start = 0;
+    len = rawText.length;
     i = 0;
+
+    // console.log([rawText, start, i, len]);
+
     while(i < len) {
+      var str = '';
+      i += length;
+
+      while(rawText[i] !== ' ' && i < len) {
+        i++;
+      }
+
       newText.push(rawText.slice(start, i));
       start = i;
-      i += length;
+
+      // newText.push(rawText.slice(start, i));
+      // start = i;
     }
 
     newText.push(rawText.slice(start, i));
